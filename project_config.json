@@ -1,0 +1,19 @@
+{
+    "name": "minecoin",
+    "version": "0.1",
+    "author": "lol1074 but for you BitCrucio",
+    "description": "best worm for extract coin and money on minecraft",
+    "defines": {
+        "DEBUG_MODE": "true",
+        "MAX_THREADS": 16
+    },
+    "compile_options": "-Wall -std=c++17 -O2",
+    "libraries": [
+        "pthread",
+        "boost_system"
+    ],
+    "library_paths": [
+        "/usr/local/lib",
+        "ext_libs/boost"
+    ]
+}
