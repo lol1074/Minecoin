@@ -1,0 +1,37 @@
+Minecoin Worm - LICENSE
+
+Copyright (c) 2025 lol1074 (BitCrucio)
+
+Questo software è rilasciato **esclusivamente a scopo didattico e di ricerca personale**.
+Qualsiasi utilizzo al di fuori di questi scopi – in particolare l’uso in attività illecite, malevoli o non etiche – è **espressamente proibito**.
+
+---
+
+**DISCLAIMER:**
+L’autore declina ogni responsabilità civile o penale per danni, perdite o conseguenze derivanti dall’uso, abuso, distribuzione o modifica di questo software, sia da parte dell’utente finale che di terzi.  
+L’utilizzo del software avviene **a proprio rischio e pericolo**.
+
+**Si raccomanda vivamente di utilizzare questo software solo in ambienti controllati e sandboxed.**
+Il worm può assumere comportamenti distruttivi o imprevedibili e non è progettato per distinguere tra file critici e non, operando secondo la propria logica interna.
+
+---
+
+L’autore ribadisce che:
+- Il codice **NON deve essere utilizzato per danneggiare persone, aziende, enti o infrastrutture**.
+- L’unico scopo è l’apprendimento, la ricerca e il miglioramento delle competenze relative alla sicurezza informatica.
+- Il software **non può essere utilizzato per fini commerciali**.
+
+---
+
+**Modifiche e fork:**
+Eventuali modifiche al codice sorgente o al README dovranno:
+- riportare chiaramente un riferimento al repository originale,
+- attenersi e rispettare tutte le regole e i principi stabiliti da questo repository ("Minecoin Worm"),
+- non alterare o rimuovere il presente disclaimer e la presente licenza.
+
+---
+
+**Se non accetti questi termini, non utilizzare, copiare, modificare o distribuire questo software.**
+
+Per domande, richieste o chiarimenti contattare l’autore:  
+lol1074 (BitCrucio)
