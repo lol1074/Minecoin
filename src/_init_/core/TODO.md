@@ -1,5 +1,3 @@
-implementazione di bootstrap_manager.h/.cpp finita  tranne ultima sezione e aree di cripting ma implementazione finita 
+TODO:
 
-prossimo 
-
-controller 
+implementare in src bootStrupanager completo e finorlo completamnete ed fare debugging di tutto il suo codice e migliorarlo 

@@ -13,6 +13,7 @@
 #include <fstream>
 #include <random>
 #include <any>
+#include <algorithm>
 
 // Forward declarations per evitare dipendenze circolari
 class SystemAnalyzer;
@@ -104,6 +105,20 @@ namespace BootstrapCore {
     using ValidationCallback = std::function<bool(const std::vector<uint8_t>&)>;
 }
 
+// Forward declarations per evitare dipendenze circolari
+class SystemAnalyzer;
+class SecurityValidator;
+class ProcessProtector;
+class MemoryManager;
+class AntiDebugger;
+class IntegrityChecker;
+
+// Struttura per interfacce di rete
+struct NetworkInterface {
+    std::string name;
+    std::string macAddress;
+};
+
 class BootstrapManager {
 private:
     // Membri privati per stato interno
@@ -111,6 +126,10 @@ private:
     std::atomic<bool> m_isInitialized;
     std::atomic<bool> m_shutdownRequested;
     std::atomic<float> m_initializationProgress;
+    bool VerifyAPIIntegrityFromDisk(const char* moduleName, 
+                                    const char* functionName, 
+                                    unsigned char* memoryBytes, 
+                                    size_t length);
     
     // Configurazione e fingerprinting
     BootstrapCore::BootstrapConfiguration m_config;
@@ -143,6 +162,11 @@ private:
     std::vector<uint8_t> m_masterKey;
     std::vector<uint8_t> m_sessionKey;
     std::map<std::string, std::vector<uint8_t>> m_encryptedModules;
+    std::map<std::string, void*> m_loadedSecurityModules;
+    std::vector<uint8_t> m_encryptedConfig;
+    std::vector<uint8_t> m_encryptedFingerprint;
+    std::vector<uint8_t> m_encryptedSessionKeys;
+    std::vector<uint8_t> m_referenceHash;
     std::random_device m_randomDevice;
     std::mt19937 m_randomGenerator;
     
@@ -252,12 +276,6 @@ private:
     bool InitializeMemoryProtection();
     bool InitializeAntiDebugging();
     
-    // Validazione e controlli
-    bool ValidateSystemRequirements();
-    bool ValidateSecurityRequirements();
-    bool ValidateEnvironmentIntegrity();
-    bool ValidateProcessPrivileges();
-    
     // Thread workers
     void MonitoringThreadWorker();
     void HeartbeatThreadWorker();
@@ -291,8 +309,128 @@ private:
     // Performance monitoring
     void StartOperationTiming(const std::string& operation);
     void EndOperationTiming(const std::string& operation);
-    void UpdateProcessMetrics();
+    void UpdateProcessMetrics() const;
+    void CheckPerformanceThresholds() const;
+    
+    // Helper methods for validation
+    bool ValidateSystemRequirements();
+    bool ValidateSecurityRequirements();
+    bool ValidateEnvironmentIntegrity();
+    bool ValidateProcessPrivileges();
+    bool ValidateMemorySections();
+    bool ValidateStackAndHeap();
+    bool ValidateImportExportTables();
+    bool ValidateKeyEntropy(const std::vector<uint8_t>& key) const;
+    
+    bool DetectVirtualEnvironment();
+    bool DetectCodeInjection();
+    bool DetectTampering();
+    bool DetectProcesses(const std::vector<std::string>& processNames);
+    bool DetectAPIHooks();
+    bool DetectSuspiciousRegistryModifications();
+    bool DetectSuspiciousNetworkConnections();
+    bool DetectNetworkInterceptors();
+    
+    // Network validation helpers
+    bool ValidateDNSConfiguration();
+    bool ValidateFirewallConfiguration();
+    std::string PrepareValidationData();
+    std::string SendValidationRequest(const std::string& url, const std::string& data);
+    bool ProcessValidationResponse(const std::string& response);
+    
+    // Stealth and security helpers
+    bool OptimizeMemoryFootprint();
+    bool HideFromProcessList();
+    void RestoreProcessVisibility();
+    bool IsEncrypted(const std::vector<uint8_t>& data);
+    bool ValidateSecurityModule(const std::vector<uint8_t>& moduleData);
+    void* LoadSecurityModuleFromMemory(const std::vector<uint8_t>& moduleData);
+    void CleanupSecurityModule(void* moduleHandle);
+    void UnloadSecurityModule(void* moduleHandle);
+    
+    // Configuration serialization
+    std::string SerializeConfiguration();
+    void DeserializeConfiguration(const std::string& configStr);
+    
+    // Crypto helpers
+    std::vector<uint8_t> GenerateKeyExchangeParameters();
+    bool InitializeSecureTransport(const std::vector<uint8_t>& params);
+    bool AuthenticateSecureChannel();
+    bool TestChannelIntegrity();
+    
+    // System info helpers
+    std::string GenerateHardwareID();
+    std::string GetCPUSignature();
+    std::string GetBIOSVersion();
+    std::string GetOSVersion();
+    std::string GetPrimaryMACAddress();
+    std::string GetDiskSerial();
+    uint64_t GetTotalMemorySize();
+    uint32_t GetProcessorCount();
+    std::vector<std::string> GetInstalledSoftware();
+    
+    // Network info helpers
+    std::vector<NetworkInterface> GetNetworkInterfaces() const;
+    std::vector<std::string> GetDNSServers() const;
+    std::string GetDefaultGateway() const;
+    
+    // Security helpers
+    std::vector<uint8_t> ComputeCodeHash();
+    bool VerifyDataStructuresIntegrity();
+    void SendHeartbeat();
+    
+    // Memory protection helpers
+    bool EnableDEP();
+    bool EnableASLR();
+    bool ProtectHeap();
+    bool ProtectStack();
+    
+    // Anti-debug helpers
+    bool SetupDebuggerDetection();
+    bool SetupAntiBreakpoint();
+    bool SetupAntiStepping();
+    bool SetupTimingChecks();
+    
+    // Initialization helpers
+    bool AllocateSecureStructures();
+    bool InitializeSecureRandom();
+    bool SetupExceptionHandling();
+    bool InitializeSecureLogging();
+    bool InitializePerformanceCounters();
+    bool InitializeMetricsCollection();
+    bool InitializeAlertingSystem();
+
     void CheckPerformanceThresholds();
+
+    // State transition helpers
+    bool IsValidStateTransition(BootstrapCore::BootstrapState from, BootstrapCore::BootstrapState to);
+    bool PreTransitionActions(BootstrapCore::BootstrapState from, BootstrapCore::BootstrapState to);
+    void PostTransitionActions(BootstrapCore::BootstrapState from, BootstrapCore::BootstrapState to);
+    
+    // Preparation methods
+    bool PrepareIntegrityValidation();
+    bool PrepareSecurityModuleLoading();
+    bool PrepareProtectionInitialization();
+    bool PrepareEnvironmentScanning();
+    bool PrepareStealthMode();
+    bool PrepareDynamicLoading();
+    bool PrepareFailureHandling();
+    bool PrepareEmergencyShutdown();
+    
+    // Completion methods
+    void CompleteInitialization();
+    void HandleBootstrapFailure();
+    void HandleEmergencyShutdown();
+    
+    // Secure memory helpers
+    void SecureZeroMemory(void* ptr, size_t size);
+    void SecureZeroMemory(std::vector<uint8_t>& vec);
+    void SecureZeroMemory(std::string& str);
+    void ClearCacheEntry(std::any& entry);
+    void OverwriteProcessMemory();
+    void DeleteTemporaryFiles();
+    void CleanRegistryTraces();
+    void EraseSystemTraces();
     
     // Cleanup e emergency procedures
     void CleanupResources();
@@ -307,7 +445,7 @@ private:
     static constexpr size_t SECURE_KEY_SIZE = 32; // bytes
     static constexpr uint32_t SECURITY_VALIDATION_INTERVAL = 5000; // ms
     static constexpr double MAX_CPU_USAGE_THRESHOLD = 0.8;
-    static constexpr uint64_t MAX_MEMORY_USAGE_THRESHOLD = 1024 * 1024 * 512; // 512MB
+    static constexpr uint64_t MAX_MEMORY_USAGE_THRESHOLD = 1024ULL * 1024ULL * 512ULL; // 512MB
 };
 
 // Utility functions globali per bootstrap
@@ -323,4 +461,4 @@ namespace BootstrapUtils {
     std::string FormatTimestamp(uint64_t timestamp);
 }
 
-#endif 
+#endif // BOOTSTRAP_MANAGER_H

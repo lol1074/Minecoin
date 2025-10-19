@@ -44,7 +44,6 @@ const std::string PROJECT_AUTHOR = "{$author}";
 
 EOT;
 
-// Aggiungi le macro personalizzate da project.json
 foreach ($defines as $key => $value) {
     if (is_numeric($value)) {
         $cpp_config_content .= "#define {$key} {$value}\n";
@@ -57,7 +56,6 @@ $cpp_config_content .= "\n";
 file_put_contents($cpp_config_file, $cpp_config_content);
 echo "File di configurazione C++ '{$cpp_config_file}' generato con successo.\n";
 
-// 3. Prepara le stringhe per le librerie e i percorsi
 $library_flags = array_map(function($lib) {
     return "-l{$lib}";
 }, $libraries);
