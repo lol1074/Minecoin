@@ -1,9 +1,9 @@
 #define _POSIX_C_SOURCE 199309L
-#include "type.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 #include "time.h"
+#include "types.h"
 
 #ifdef _WIN32
 #include <windows.h>

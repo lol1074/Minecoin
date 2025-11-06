@@ -1,0 +1,28 @@
+# Build artifacts
+build/
+bin/
+*.o
+*.a
+*.so
+
+# Test files
+test_*
+bench.*
+*.scx
+
+# IDE
+.idea/
+*.swp
+*~
+
+# System
+.DS_Store
+Thumbs.db
+
+# Profiling
+gmon.out
+*.gcda
+*.gcno
+
+# Valgrind
+*.memcheck
