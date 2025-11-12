@@ -3329,6 +3329,7 @@ bool BootstrapManager::ValidateProcessIntegrity()
     }
 }
 
+
 // Generazione report sicurezza
 std::string BootstrapManager::GenerateSecurityReport() const
 {

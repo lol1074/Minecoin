@@ -15,3 +15,13 @@
 - **Topics**: #FIX #ADDED #CHANGED
 - **Link al codice**: 6b8503f7ab6bd5145757995bc6521a526fdcbd83
 
+## 2025-11-06 19:21 — lol1074 but for you BitCrucio
+- **Descrizione**: Gestione File a Blocchi (Chunking):
+- **Topics**: 
+- **Link al codice**: 5c4ede06338a1ee089667cecf78a487921b58d33
+
+## 2025-11-06 19:23 — lol1074 but for you BitCrucio
+- **Descrizione**: e stato implementato SCX è stato aggiornato con una pipeline multi-stage avanzata per la compressione e la crittografia dei file.
+- **Topics**: 
+- **Link al codice**: 5c4ede06338a1ee089667cecf78a487921b58d33
+

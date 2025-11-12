@@ -1,3 +1,6 @@
+## [0.5] - 2025-11-06
+- #ADDED #FIX #DOC
+---
 ## [Unreleased]
 ### #FEATURE #ADDED #TODO
 - Sistema di ricerca avanzata per changelog (#FEATURE)
