@@ -1,6 +1,6 @@
 # Minecoin
 
-wssendo che questo è il secondo account quello molto vecchio si prega di accedere o all'account principale oppure di accedere al commit dev per avere una rpima versione del codice del worm
+attenzione che questo è il secondo account quello molto vecchio si prega di accedere o all'account principale oppure di accedere al commit dev per avere una rpima versione del codice del worm
 
 # ATTENZIONE 
 
